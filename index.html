@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7A2E6E">
+<title>Qui sommes-nous ? – Mission trinôme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --prune: #7A2E6E;
+    --prune-fonce: #5A1F51;
+    --ciel: #7CC3E0;
+    --ciel-pale: #E3F2F9;
+    --encre: #1F2340;
+    --brume: #F3F6FA;
+    --soleil: #F2B33D;
+    --blanc: #FFFFFF;
+    --texte-doux: #4A4F6A;
+    --titre: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+    --corps: "Atkinson Hyperlegible", "Segoe UI", Roboto, Arial, sans-serif;
+    --barre: 88px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--corps);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--encre);
+    background: var(--brume);
+    padding-bottom: calc(var(--barre) + env(safe-area-inset-bottom, 0px) + 24px);
+  }
+
+  /* ---------- En-tête ---------- */
+  .entete {
+    background: var(--prune);
+    color: var(--blanc);
+    padding: calc(28px + env(safe-area-inset-top, 0px)) 22px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .entete::after {
+    /* trois cercles qui se chevauchent : le trinôme */
+    content: "";
+    position: absolute;
+    right: -64px; top: -46px;
+    width: 190px; height: 175px;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(124,195,224,.55) 0 44px, transparent 45px),
+      radial-gradient(circle at 60% 40%, rgba(242,179,61,.5) 0 44px, transparent 45px),
+      radial-gradient(circle at 45% 72%, rgba(255,255,255,.28) 0 44px, transparent 45px);
+    pointer-events: none;
+  }
+  .entete-interne { max-width: 560px; margin: 0 auto; position: relative; z-index: 1; }
+  .surtitre { font-size: .95rem; opacity: .85; margin: 0 0 6px; }
+  h1 {
+    font-family: var(--titre);
+    font-weight: 800;
+    font-size: clamp(2.3rem, 11vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: 0 0 14px;
+    max-width: 7ch;
+  }
+  .intro { margin: 0; max-width: 34ch; font-size: 1.05rem; }
+
+  /* ---------- Contenu ---------- */
+  main { max-width: 560px; margin: -40px auto 0; padding: 0 16px; position: relative; z-index: 2; }
+
+  .carte {
+    background: var(--blanc);
+    border-radius: 22px;
+    padding: 22px 20px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 0 rgba(31,35,64,.06), 0 10px 28px -14px rgba(90,31,81,.35);
+    position: relative;
+  }
+  .carte[hidden] { display: none; }
+  .carte.revelee { animation: retourner .55s cubic-bezier(.2,.8,.2,1) both; transform-origin: 50% 0; }
+  @keyframes retourner {
+    from { opacity: 0; transform: perspective(900px) rotateX(-65deg) translateY(-10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .pastille {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 50%;
+    font-family: var(--titre); font-weight: 800; font-size: 1.3rem;
+    background: var(--ciel-pale); color: var(--prune);
+    margin-bottom: 10px;
+  }
+  .carte h2 {
+    font-family: var(--titre);
+    font-weight: 700;
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin: 0 0 8px;
+  }
+  .carte p { margin: 0 0 10px; }
+  .regle {
+    background: var(--brume);
+    border-left: 4px solid var(--ciel);
+    border-radius: 0 12px 12px 0;
+    padding: 10px 14px;
+    color: var(--texte-doux);
+    font-size: .98rem;
+  }
+  .duree { color: var(--texte-doux); font-size: .92rem; margin-top: 12px; margin-bottom: 0; }
+
+  /* champs points communs */
+  .champs { list-style: none; padding: 0; margin: 14px 0 4px; display: grid; gap: 10px; }
+  .champs label { display: block; font-size: .9rem; color: var(--texte-doux); margin-bottom: 4px; }
+  .champs input {
+    width: 100%;
+    font: inherit;
+    padding: 12px 14px;
+    border: 2px solid #D6DDE8;
+    border-radius: 12px;
+    background: var(--blanc);
+    color: var(--encre);
+  }
+  .champs input:focus { outline: none; border-color: var(--prune); }
+
+  .liste-presentation { margin: 8px 0 10px; padding-left: 1.2em; }
+  .liste-presentation li { margin-bottom: 4px; }
+
+  .bonus {
+    border: 2px dashed var(--ciel);
+    background: transparent;
+    box-shadow: none;
+  }
+  .bonus h2 { font-size: 1.2rem; }
+
+  /* bouton tirer la carte */
+  .tirer-zone { text-align: center; margin: 8px 0 22px; }
+  .bouton {
+    font: inherit;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 24px;
+    min-height: 50px;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .bouton:focus-visible { outline: 3px solid var(--soleil); outline-offset: 3px; }
+  .bouton-tirer { background: var(--prune); color: var(--blanc); width: 100%; font-size: 1.05rem; }
+  .bouton-tirer:active { background: var(--prune-fonce); }
+  .pile {
+    /* rappel visuel des cartes restantes */
+    display: block; margin: 0 auto 10px; height: 10px; width: 70%;
+    border-radius: 0 0 14px 14px;
+    background: #E4D3E1;
+    box-shadow: 0 6px 0 -2px #EFE4EE;
+  }
+  .lien-discret {
+    background: none; border: none; color: var(--prune); font: inherit;
+    text-decoration: underline; cursor: pointer; padding: 10px; margin-top: 4px;
+  }
+
+  /* ---------- Minuteur ---------- */
+  .minuteur {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: var(--encre);
+    color: var(--blanc);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 10;
+    transition: background-color .4s;
+  }
+  .minuteur.alerte { background: var(--soleil); color: var(--encre); }
+  .minuteur.fini { background: var(--prune); }
+  .progression {
+    position: absolute; top: 0; left: 0; height: 4px; width: 100%;
+    background: var(--ciel);
+    transform-origin: left; transform: scaleX(1);
+  }
+  .minuteur.alerte .progression { background: var(--prune); }
+  .minuteur-interne {
+    max-width: 560px; margin: 0 auto;
+    display: flex; align-items: center; gap: 12px;
+    min-height: 60px;
+  }
+  .temps {
+    font-family: var(--titre);
+    font-weight: 800;
+    font-size: 2.2rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    min-width: 4.3ch;
+  }
+  .statut { flex: 1; font-size: .92rem; line-height: 1.3; }
+  .bouton-minuteur { background: var(--ciel); color: var(--encre); padding: 12px 18px; }
+  .minuteur.alerte .bouton-minuteur { background: var(--encre); color: var(--blanc); }
+  .bouton-raz {
+    background: transparent; color: inherit; border: 2px solid currentColor;
+    padding: 10px 12px; min-height: 46px; opacity: .8;
+  }
+
+  /* ---------- Écran de fin ---------- */
+  .fin {
+    position: fixed; inset: 0;
+    background: var(--prune);
+    color: var(--blanc);
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: calc(32px + env(safe-area-inset-top, 0px)) 28px calc(32px + env(safe-area-inset-bottom, 0px));
+    z-index: 20;
+  }
+  .fin[hidden] { display: none; }
+  .fin h2 {
+    font-family: var(--titre); font-weight: 800;
+    font-size: clamp(2.4rem, 12vw, 3.6rem); line-height: 1; margin: 0 0 16px; max-width: 9ch;
+  }
+  .fin p { font-size: 1.15rem; max-width: 30ch; margin: 0 0 28px; }
+  .fin .bouton { background: var(--blanc); color: var(--prune); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carte.revelee { animation: none; }
+    .minuteur { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="entete">
+  <div class="entete-interne">
+    <p class="surtitre">Mastère Management des Organisations</p>
+    <h1>Qui sommes&#8209;nous&nbsp;?</h1>
+    <p class="intro">Trois inconnus, quatre cartes, quinze minutes. Tirez les cartes une par une et découvrez votre trinôme.</p>
+  </div>
+</header>
+
+<main>
+  <article class="carte" id="carte-1" data-carte>
+    <span class="pastille" aria-hidden="true">1</span>
+    <h2>Trouvez trois points communs</h2>
+    <p>Des points communs entre vous trois, et que vous n'auriez pas devinés.</p>
+    <p class="regle">Les évidences sont interdites&nbsp;: «&nbsp;on est tous en mastère&nbsp;» ou «&nbsp;on habite la région&nbsp;» ne comptent pas.</p>
+    <ul class="champs">
+      <li><label for="pc1">Point commun n°1</label><input id="pc1" type="text" autocomplete="off" data-memo></li>
+      <li><label for="pc2">Point commun n°2</label><input id="pc2" type="text" autocomplete="off" data-memo></li>
+      <li><label for="pc3">Point commun n°3</label><input id="pc3" type="text" autocomplete="off" data-memo></li>
+    </ul>
+    <p class="duree">Environ 4 minutes</p>
+  </article>
+
+  <article class="carte" id="carte-2" data-carte hidden>
+    <span class="pastille" aria-hidden="true">2</span>
+    <h2>Une singularité chacun</h2>
+    <p>À tour de rôle, partagez quelque chose que personne dans la salle ne devinerait à votre sujet.</p>
+    <p class="regle">Une passion inattendue, un talent caché, un lieu où vous avez vécu, une expérience marquante&hellip; Vous choisissez ce que vous dévoilez.</p>
+    <p class="duree">Environ 4 minutes</p>
+  </article>
+
+  <article class="carte" id="carte-3" data-carte hidden>
+    <span class="pastille" aria-hidden="true">3</span>
+    <h2>Le meilleur encadrant que j'ai rencontré</h2>
+    <p>En une phrase chacun&nbsp;: qui était-ce, et que faisait-il de bien&nbsp;?</p>
+    <p class="regle">Manager, tuteur de stage, coach sportif, professeur, responsable d'association&hellip; Toutes les expériences comptent.</p>
+    <p class="duree">Environ 4 minutes</p>
+  </article>
+
+  <article class="carte" id="carte-4" data-carte hidden>
+    <span class="pastille" aria-hidden="true">4</span>
+    <h2>Préparez la présentation croisée</h2>
+    <p>Chacun présentera un autre membre du trinôme au groupe, en 30 secondes&nbsp;:</p>
+    <ol class="liste-presentation">
+      <li>son prénom&nbsp;;</li>
+      <li>son entreprise ou son projet professionnel&nbsp;;</li>
+      <li>sa singularité.</li>
+    </ol>
+    <p class="regle">Mettez-vous d'accord&nbsp;: qui présente qui, et qui annonce vos trois points communs.</p>
+    <p class="duree">Environ 3 minutes</p>
+  </article>
+
+  <article class="carte bonus" id="carte-bonus" data-carte hidden>
+    <h2>Bonus facultatif&nbsp;: le coup de pouce réseau</h2>
+    <p>Si l'un d'entre vous cherche encore une entreprise et souhaite en parler, profitez de ce moment&nbsp;: votre entreprise recrute-t-elle&nbsp;? Connaissez-vous un contact&nbsp;?</p>
+  </article>
+
+  <div class="tirer-zone" id="tirer-zone">
+    <span class="pile" aria-hidden="true"></span>
+    <button class="bouton bouton-tirer" id="tirer" type="button">Tirer la carte suivante</button>
+    <button class="lien-discret" id="tout" type="button">Afficher toutes les cartes</button>
+  </div>
+</main>
+
+<section class="minuteur" id="minuteur" aria-label="Minuteur">
+  <span class="progression" id="progression" aria-hidden="true"></span>
+  <div class="minuteur-interne">
+    <span class="temps" id="temps" role="timer" aria-live="off">15:00</span>
+    <span class="statut" id="statut" aria-live="polite">Lancez le minuteur quand votre trinôme est prêt.</span>
+    <button class="bouton bouton-minuteur" id="lancer" type="button">Démarrer</button>
+    <button class="bouton bouton-raz" id="raz" type="button" aria-label="Remettre le minuteur à zéro" hidden>&#8634;</button>
+  </div>
+</section>
+
+<section class="fin" id="fin" hidden role="alertdialog" aria-labelledby="fin-titre">
+  <h2 id="fin-titre">C'est l'heure&nbsp;!</h2>
+  <p>Rejoignez le groupe pour la présentation croisée. Chacun présente un camarade en 30 secondes.</p>
+  <button class="bouton" id="fermer-fin" type="button">Fermer</button>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- Réglages par l'adresse de la page ----
+     ?min=15      durée du minuteur en minutes (15 par défaut)
+     ?fin=14h45   heure de fin commune à tous les téléphones (facultatif)   */
+  var params = new URLSearchParams(location.search);
+  var dureeMin = parseFloat(params.get("min"));
+  if (!(dureeMin > 0 && dureeMin <= 120)) dureeMin = 15;
+  var DUREE = Math.round(dureeMin * 60000);
+  var ALERTE = Math.min(3 * 60000, DUREE / 4);
+
+  var CLE = "qsn-" + location.pathname;
+  function lire(k) { try { return localStorage.getItem(CLE + k); } catch (e) { return null; } }
+  function ecrire(k, v) { try { localStorage.setItem(CLE + k, v); } catch (e) {} }
+  function effacer(k) { try { localStorage.removeItem(CLE + k); } catch (e) {} }
+
+  /* ---- Cartes ---- */
+  var cartes = Array.prototype.slice.call(document.querySelectorAll("[data-carte]"));
+  var zone = document.getElementById("tirer-zone");
+  var btnTirer = document.getElementById("tirer");
+  var nbVisibles = parseInt(lire("cartes"), 10) || 1;
+
+  function majCartes(animer) {
+    cartes.forEach(function (c, i) {
+      var etaitCachee = c.hidden;
+      c.hidden = i >= nbVisibles;
+      if (animer && etaitCachee && !c.hidden) {
+        c.classList.remove("revelee"); void c.offsetWidth; c.classList.add("revelee");
+      }
+    });
+    zone.hidden = nbVisibles >= cartes.length;
+    btnTirer.textContent = nbVisibles === cartes.length - 1 ? "Tirer la carte bonus" : "Tirer la carte suivante";
+    ecrire("cartes", nbVisibles);
+  }
+  btnTirer.addEventListener("click", function () {
+    nbVisibles = Math.min(nbVisibles + 1, cartes.length);
+    majCartes(true);
+    var nouvelle = cartes[nbVisibles - 1];
+    if (nouvelle) nouvelle.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  });
+  document.getElementById("tout").addEventListener("click", function () {
+    nbVisibles = cartes.length; majCartes(true);
+  });
+  majCartes(false);
+
+  /* ---- Mémo des points communs ---- */
+  document.querySelectorAll("[data-memo]").forEach(function (champ) {
+    var v = lire("champ-" + champ.id); if (v) champ.value = v;
+    champ.addEventListener("input", function () { ecrire("champ-" + champ.id, champ.value); });
+  });
+
+  /* ---- Minuteur ---- */
+  var elTemps = document.getElementById("temps");
+  var elStatut = document.getElementById("statut");
+  var elBarre = document.getElementById("minuteur");
+  var elProg = document.getElementById("progression");
+  var btnLancer = document.getElementById("lancer");
+  var btnRaz = document.getElementById("raz");
+  var elFin = document.getElementById("fin");
+
+  var fin = null;          // horodatage de fin quand le minuteur tourne
+  var reste = DUREE;       // temps restant quand il est en pause
+  var alerteDonnee = false, finDonnee = false;
+  var boucle = null, verrou = null, audio = null;
+
+  // heure de fin commune éventuelle : ?fin=14h45 ou 14:45
+  var finCommune = null;
+  var p = (params.get("fin") || "").match(/^(\d{1,2})[h:](\d{2})$/i);
+  if (p) {
+    var d = new Date(); d.setHours(+p[1], +p[2], 0, 0);
+    if (d.getTime() > Date.now()) finCommune = d.getTime();
+  }
+
+  var finMemo = parseInt(lire("fin"), 10);
+  if (finCommune) { fin = finCommune; }
+  else if (finMemo && finMemo > Date.now()) { fin = finMemo; }
+
+  function format(ms) {
+    var s = Math.max(0, Math.ceil(ms / 1000));
+    var m = Math.floor(s / 60), r = s % 60;
+    return (m < 10 ? "0" : "") + m + ":" + (r < 10 ? "0" : "") + r;
+  }
+  function bip(nb) {
+    if (!audio) return;
+    try {
+      for (var i = 0; i < nb; i++) {
+        var o = audio.createOscillator(), g = audio.createGain();
+        var t = audio.currentTime + i * 0.35;
+        o.frequency.value = 880; o.type = "sine";
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.35, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+        o.connect(g); g.connect(audio.destination); o.start(t); o.stop(t + 0.3);
+      }
+    } catch (e) {}
+  }
+  function vibrer(motif) { try { if (navigator.vibrate) navigator.vibrate(motif); } catch (e) {} }
+  function garderEcran() {
+    try { if ("wakeLock" in navigator) navigator.wakeLock.request("screen").then(function (w) { verrou = w; }).catch(function () {}); } catch (e) {}
+  }
+  function libererEcran() { try { if (verrou) { verrou.release(); verrou = null; } } catch (e) {} }
+
+  function afficher() {
+    var restant = fin ? fin - Date.now() : reste;
+    elTemps.textContent = format(restant);
+    elProg.style.transform = "scaleX(" + Math.max(0, Math.min(1, restant / DUREE)) + ")";
+
+    if (restant <= 0) {
+      elBarre.className = "minuteur fini";
+      elStatut.textContent = "Temps écoulé.";
+      btnLancer.hidden = true; btnRaz.hidden = false;
+      if (!finDonnee) {
+        finDonnee = true; arreterBoucle(); fin = null; reste = 0; effacer("fin");
+        elFin.hidden = false; document.getElementById("fermer-fin").focus();
+        vibrer([400, 200, 400, 200, 600]); bip(3); libererEcran();
+      }
+      return;
+    }
+    if (restant <= ALERTE) {
+      elBarre.className = "minuteur alerte";
+      elStatut.textContent = "Plus que " + Math.ceil(restant / 60000) + " min : préparez la présentation croisée.";
+      if (!alerteDonnee && fin) { alerteDonnee = true; vibrer(250); bip(1); }
+    } else {
+      elBarre.className = "minuteur";
+      elStatut.textContent = fin ? "Échangez, le temps file." : (reste < DUREE ? "Minuteur en pause." : "Lancez le minuteur quand votre trinôme est prêt.");
+    }
+  }
+  function lancerBoucle() { arreterBoucle(); boucle = setInterval(afficher, 250); afficher(); }
+  function arreterBoucle() { if (boucle) { clearInterval(boucle); boucle = null; } }
+
+  function demarrer() {
+    try { if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)(); else audio.resume(); } catch (e) {}
+    fin = Date.now() + reste; ecrire("fin", fin);
+    btnLancer.textContent = "Pause"; btnRaz.hidden = false;
+    garderEcran(); lancerBoucle();
+  }
+  function pause() {
+    reste = Math.max(0, fin - Date.now()); fin = null; effacer("fin");
+    btnLancer.textContent = "Reprendre"; arreterBoucle(); libererEcran(); afficher();
+  }
+  function remettre() {
+    arreterBoucle(); fin = null; reste = DUREE; alerteDonnee = false; finDonnee = false; effacer("fin");
+    btnLancer.hidden = false; btnLancer.textContent = "Démarrer"; btnRaz.hidden = true;
+    elFin.hidden = true; libererEcran(); afficher();
+  }
+
+  btnLancer.addEventListener("click", function () { if (fin) pause(); else demarrer(); });
+  btnRaz.addEventListener("click", remettre);
+  document.getElementById("fermer-fin").addEventListener("click", function () { elFin.hidden = true; });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && fin) { garderEcran(); afficher(); } });
+
+  if (fin) {
+    if (finCommune) btnLancer.hidden = true;
+    btnLancer.textContent = "Pause"; btnRaz.hidden = !!finCommune;
+    if (fin - Date.now() <= ALERTE) alerteDonnee = true;
+    lancerBoucle();
+  } else {
+    afficher();
+  }
+})();
+</script>
+</body>
+</html>
